@@ -59,7 +59,7 @@ const router = createBrowserRouter([
       { path: 'contact', element: <Contact /> },
     ],
   },
-], { basename: '/supertopp' })
+])
 
 export default function App() {
   return (

@@ -1,5 +1,18 @@
 import { Link } from 'react-router-dom'
-import { Droplets, Mail, Phone, MapPin, Facebook, Instagram, Twitter, Youtube } from 'lucide-react'
+import { Droplets, Mail, Phone, MapPin, Facebook, Instagram } from 'lucide-react'
+
+function TiktokIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+    >
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.7a8.18 8.18 0 0 0 4.76 1.52V6.77a4.83 4.83 0 0 1-1-.08z" />
+    </svg>
+  )
+}
 
 const footerLinks = {
   Company: [
@@ -26,10 +39,9 @@ const footerLinks = {
 }
 
 const socials = [
-  { icon: Facebook, href: '#', label: 'Facebook' },
-  { icon: Instagram, href: '#', label: 'Instagram' },
-  { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Youtube, href: '#', label: 'YouTube' },
+  { icon: Facebook, href: 'https://www.facebook.com/share/18ypzE551e/?mibextid=wwXIfr', label: 'Facebook' },
+  { icon: Instagram, href: 'https://www.instagram.com/supertoppwater?stkn=aDdseXh3bmx4OWYw', label: 'Instagram' },
+  { icon: TiktokIcon, href: 'https://www.tiktok.com/@supertopp.water?_r=1&_t=ZS-99jboMDbAKV', label: 'Tiktok' },
 ]
 
 const certBadges = ['Purity Guaranteed', 'Safety First', '7-Stage Purification', 'Reverse Osmosis (Stage 4)', 'Mineral Balancing (Stage 5)', 'Affordable Hydration']
@@ -62,9 +74,9 @@ export function Footer() {
             {/* Contact info */}
             <div className="space-y-3">
               {[
-                { icon: Phone, text: '+1 (234) 567-8900' },
-                { icon: Mail, text: 'hello@supertopp.com' },
-                { icon: MapPin, text: '123 Purity Lane, Nairobi, Kenya' },
+                { icon: Phone, text: '+2347068611884' },
+                { icon: Mail, text: 'jomachnigltd@gmail.com' },
+                { icon: MapPin, text: 'Alagbaka GRA Extension, Akure, Nigeria' },
               ].map(({ icon: Icon, text }) => (
                 <div key={text} className="flex items-center gap-3">
                   <Icon className="w-4 h-4 text-[#4DD0E1] flex-shrink-0" />
@@ -78,6 +90,8 @@ export function Footer() {
                 <a
                   key={label}
                   href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
                   className="w-9 h-9 rounded-full bg-white/8 border border-white/10 flex items-center justify-center text-white/50 hover:text-[#4DD0E1] hover:border-[#4DD0E1]/50 hover:bg-[#4DD0E1]/10 transition-all duration-300"
                 >

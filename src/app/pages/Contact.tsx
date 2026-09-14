@@ -26,7 +26,7 @@ interface FormData {
 const faqs = [
   {
     q: 'Where do you deliver?',
-    a: 'We deliver across 50+ cities and towns in East Africa, including Nairobi, Mombasa, Kisumu, Nakuru, Eldoret, Kampala, Dar es Salaam, and expanding areas. Same-day delivery is available in Nairobi for orders placed before 2PM.',
+    a: 'We currently deliver within Akure, Ondo State, Nigeria — and we are expanding to more cities soon. Same-day delivery is available in Akure for orders placed before 2PM.',
   },
   {
     q: 'How do I place a bulk or corporate order?',
@@ -46,7 +46,7 @@ const faqs = [
   },
   {
     q: 'How quickly do you deliver?',
-    a: 'Same-day delivery is available in Nairobi, Mombasa, and Kisumu for orders before 2PM. Next-day delivery for other covered cities. Corporate accounts with recurring orders get priority scheduling.',
+    a: 'Same-day delivery is available in Akure for orders placed before 2PM. As we expand to more cities, next-day delivery will be available in those areas. Corporate accounts with recurring orders get priority scheduling.',
   },
   {
     q: 'How do I become a distributor?',
@@ -55,8 +55,7 @@ const faqs = [
 ]
 
 const deliveryCities = [
-  'Nairobi', 'Mombasa', 'Kisumu', 'Nakuru', 'Eldoret', 'Thika',
-  'Nyeri', 'Meru', 'Kampala', 'Dar es Salaam', 'Arusha', 'Kigali',
+  'Akure',
 ]
 
 export function Contact() {
@@ -242,32 +241,32 @@ export function Contact() {
                 {
                   icon: MessageCircle,
                   label: 'WhatsApp (Fastest)',
-                  value: '+1 (234) 567-8900',
+                  value: ' 07068611884',
                   desc: 'Available 6AM–10PM daily',
-                  href: 'https://wa.me/12345678900',
+                  href: 'https://wa.me/+2347068611884',
                   accent: '#25D366',
                 },
                 {
                   icon: Phone,
                   label: 'Phone',
-                  value: '+1 (234) 567-8900',
+                  value: '+2347068611884',
                   desc: 'Mon–Sat, 8AM–6PM',
-                  href: 'tel:+12345678900',
+                  href: 'tel:+2347068611884',
                   accent: '#4DD0E1',
                 },
                 {
                   icon: Mail,
                   label: 'Email',
-                  value: 'hello@supertopp.com',
+                  value: 'jomachnigltd@gmail.com',
                   desc: 'Response within 2 hours',
-                  href: 'mailto:hello@supertopp.com',
+                  href: 'mailto:jomachnigltd@gmail.com',
                   accent: '#4DD0E1',
                 },
                 {
                   icon: MapPin,
                   label: 'Head Office',
-                  value: '123 Purity Lane, Nairobi',
-                  desc: 'Kenya — Open Mon–Fri',
+                  value: 'Plot 8/9 off Solomon Crescent, By Police Post, Alagbaka GRA Extension',
+                  desc: 'Akure, Ondo State',
                   href: '#',
                   accent: '#4DD0E1',
                 },
@@ -301,9 +300,9 @@ export function Contact() {
                 </div>
                 <div className="space-y-2">
                   {[
-                    { day: 'Monday – Friday', time: '7:00 AM – 7:00 PM' },
-                    { day: 'Saturday', time: '8:00 AM – 5:00 PM' },
-                    { day: 'Sunday', time: '9:00 AM – 2:00 PM' },
+                    { day: 'Monday – Friday', time: '8:00 AM – 6:00 PM' },
+                    { day: 'Saturday', time: '9:00 AM – 4:00 PM' },
+                    { day: 'Sunday', time: 'Closed' },
                   ].map(h => (
                     <div key={h.day} className="flex justify-between text-xs">
                       <span className="text-white/50">{h.day}</span>
@@ -349,7 +348,7 @@ export function Contact() {
                 className="text-3xl lg:text-4xl font-black text-[#0B1F35] mt-3"
                 style={{ fontFamily: 'Manrope, sans-serif' }}
               >
-                We Cover Your City
+                We Cover Akure city
               </h2>
               <p className="text-[#0B1F35]/55 mt-3 max-w-lg mx-auto">
                 Expanding every month. Same-day delivery in major cities.
@@ -366,7 +365,7 @@ export function Contact() {
                 </div>
               ))}
               <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#1565C0]/10 border border-[#1565C0]/30">
-                <span className="text-[#1565C0] text-sm font-semibold">+ 38 more cities</span>
+                <span className="text-[#1565C0] text-sm font-semibold"> more cities to come</span>
               </div>
             </motion.div>
           </div>
@@ -436,7 +435,7 @@ export function Contact() {
                 Our team responds within minutes. Order, ask questions, or get support — all on WhatsApp.
               </p>
               <a
-                href="https://wa.me/12345678900?text=Hi%20SUPER%20TOPP%2C%20I'd%20like%20to%20place%20an%20order!"
+                href="https://wa.me/+2347068611884?text=Hi%20SUPER%20TOPP%2C%20I'd%20like%20to%20place%20an%20order!"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-green-500 text-white font-bold hover:bg-green-400 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-green-500/30"

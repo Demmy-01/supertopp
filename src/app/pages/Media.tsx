@@ -90,8 +90,8 @@ export function Media() {
                   key={cat}
                   onClick={() => setFilter(cat)}
                   className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${filter === cat
-                      ? 'bg-[#4DD0E1] text-[#0B1F35]'
-                      : 'border border-white/20 text-white/60 hover:border-[#4DD0E1]/50 hover:text-[#4DD0E1]'
+                    ? 'bg-[#4DD0E1] text-[#0B1F35]'
+                    : 'border border-white/20 text-white/60 hover:border-[#4DD0E1]/50 hover:text-[#4DD0E1]'
                     }`}
                 >
                   {cat}
@@ -186,41 +186,6 @@ export function Media() {
                     </div>
                   </div>
                   <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#4DD0E1]/30 rounded-2xl transition-colors duration-300" />
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ═══ PRESS ═══ */}
-        <section className="bg-[#EAF9FF] py-20">
-          <div className="max-w-7xl mx-auto px-6">
-            <motion.div {...fadeUp()} className="text-center mb-10">
-              <span className="text-[#1565C0] text-sm font-bold tracking-[0.25em] uppercase">Press & Awards</span>
-              <h2
-                className="text-3xl lg:text-4xl font-black text-[#0B1F35] mt-3"
-                style={{ fontFamily: 'Manrope, sans-serif' }}
-              >
-                Recognized Excellence
-              </h2>
-            </motion.div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {[
-                { award: 'Best Beverage Brand 2023', org: 'East Africa Business Awards' },
-                { award: 'Innovation in Water Tech', org: 'Africa Tech Summit 2022' },
-                { award: 'Community Impact Award', org: 'Kenya CSR Foundation 2023' },
-                { award: 'ISO 22000 Excellence', org: 'International Certification Board' },
-              ].map((award, i) => (
-                <motion.div
-                  key={award.award}
-                  {...fadeUp(i * 0.1)}
-                  className="bg-white rounded-2xl p-6 text-center shadow-sm border border-[#1565C0]/8"
-                >
-                  <div className="w-12 h-12 rounded-full bg-[#EAF9FF] border border-[#1565C0]/20 flex items-center justify-center mx-auto mb-4">
-                    <span className="text-xl">🏆</span>
-                  </div>
-                  <div className="text-[#0B1F35] font-bold text-sm leading-snug mb-1">{award.award}</div>
-                  <div className="text-[#1565C0]/60 text-xs">{award.org}</div>
                 </motion.div>
               ))}
             </div>

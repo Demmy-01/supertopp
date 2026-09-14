@@ -1,7 +1,11 @@
 {
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/supertopp",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/supertopp/(.*)",
       "destination": "/index.html"
     }
   ]

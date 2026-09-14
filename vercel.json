@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/supertopp",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/supertopp",

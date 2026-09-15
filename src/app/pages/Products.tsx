@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { Helmet } from 'react-helmet-async'
-import { MessageCircle, ShoppingBag, CheckCircle2, Droplets, Shield, Award, Phone } from 'lucide-react'
+import { MessageCircle, ShoppingBag, CheckCircle2, Droplets, Shield, Award, Phone, Calendar } from 'lucide-react'
 import sachete from '../../images/sachete.webp'
 import smallBottle from '../../images/small_bottle.jpeg'
 import bigPack from '../../images/big_pack.webp'
@@ -302,9 +302,27 @@ export function Products() {
             </motion.div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
-                { icon: ShoppingBag, title: 'Corporate Orders', desc: 'Scheduled delivery for offices and institutions. Dedicated account manager included.', cta: 'Get a Quote' },
-                { icon: Award, title: 'Distributor Program', desc: 'Become an authorized SuperTopp distributor. Exclusive territories and premium margins.', cta: 'Apply Now' },
-                { icon: Droplets, title: 'Dispenser Rental', desc: 'Hot & cold dispensers installed and maintained at no extra cost with 19L subscription.', cta: 'Learn More' },
+                {
+                  icon: ShoppingBag,
+                  title: 'Corporate Orders',
+                  desc: 'Scheduled delivery for offices and institutions. Dedicated account manager included.',
+                  cta: 'Get a Quote',
+                  msg: "Hi%20SUPER%20TOPP%2C%20I'm%20interested%20in%20corporate%20water%20orders",
+                },
+                {
+                  icon: Award,
+                  title: 'Distributor Program',
+                  desc: 'Become an authorized SuperTopp distributor. Exclusive territories and premium margins.',
+                  cta: 'Apply Now',
+                  msg: "Hi%20SUPER%20TOPP%2C%20I'm%20interested%20in%20becoming%20a%20distributor",
+                },
+                {
+                  icon: Calendar,
+                  title: 'Booking for Event or Program',
+                  desc: 'Supply premium bottled water or custom empty PET bottles for your weddings, parties, AGMs, and special events.',
+                  cta: 'Book Event Water',
+                  msg: "Hi%20SUPER%20TOPP%2C%20I'd%20like%20to%20book%20water%20supply%20for%20an%20event%20or%20program",
+                },
               ].map((item, i) => (
                 <motion.div
                   key={item.title}
@@ -317,7 +335,7 @@ export function Products() {
                   <h3 className="text-[#0B1F35] font-bold text-lg mb-2" style={{ fontFamily: 'Manrope, sans-serif' }}>{item.title}</h3>
                   <p className="text-[#0B1F35]/55 text-sm leading-relaxed mb-5">{item.desc}</p>
                   <a
-                    href="https://wa.me/12345678900?text=Hi%2C%20I'm%20interested%20in%20your%20bulk%20order%20program"
+                    href={`https://wa.me/+2347068611884?text=${item.msg}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[#1565C0] text-sm font-bold flex items-center gap-2 hover:gap-3 transition-all duration-200"

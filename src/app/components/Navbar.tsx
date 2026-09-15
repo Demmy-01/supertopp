@@ -80,7 +80,7 @@ export function Navbar() {
             <ShoppingCart className="w-5 h-5" />
           </Link>
           <a
-            href="https://wa.me/12345678900?text=Hi%2C%20I'd%20like%20to%20order%20SUPER%20TOPP%20water!"
+            href="https://wa.me/+2347068611884?text=Hi%2C%20I'd%20like%20to%20order%20SUPER%20TOPP%20water!"
             target="_blank"
             rel="noopener noreferrer"
             className="relative overflow-hidden bg-gradient-to-r from-[#4DD0E1] to-[#26C6DA] text-[#0B1F35] px-4 py-1.5 rounded-full text-sm font-bold hover:shadow-lg hover:shadow-[#4DD0E1]/30 transition-all duration-300 hover:scale-105"
@@ -137,7 +137,7 @@ export function Navbar() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                href="https://wa.me/12345678900?text=Hi%2C%20I'd%20like%20to%20order%20SUPER%20TOPP%20water!"
+                href="https://wa.me/+2347068611884?text=Hi%2C%20I'd%20like%20to%20order%20SUPER%20TOPP%20water!"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 bg-gradient-to-r from-[#4DD0E1] to-[#26C6DA] text-[#0B1F35] py-3 rounded-xl text-sm font-bold text-center"

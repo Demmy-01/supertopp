@@ -544,7 +544,7 @@ export function Home() {
                       {p.size}
                     </div>
                     <a
-                      href={`https://wa.me/12345678900?text=I'd%20like%20to%20order%20SUPER%20TOPP%20${p.size}`}
+                      href={`https://wa.me/+2347068611884?text=I'd%20like%20to%20order%20SUPER%20TOPP%20${p.size}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#4DD0E1]/40 text-[#4DD0E1] text-sm font-semibold hover:bg-[#4DD0E1] hover:text-[#0B1F35] transition-all duration-300"
@@ -562,6 +562,110 @@ export function Home() {
               >
                 View full product range <ArrowRight className="w-4 h-4" />
               </Link>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ═══ EMPTY BOTTLES SECTION ═══ */}
+        <section className="bg-[#0B1F35] py-20 lg:py-24 relative overflow-hidden border-t border-b border-white/10">
+          <div className="max-w-7xl mx-auto px-6 relative z-10">
+            <motion.div {...fadeUp()} className="text-center max-w-2xl mx-auto mb-14">
+              <span className="text-[#4DD0E1] text-xs font-bold tracking-[0.25em] uppercase px-4 py-1.5 rounded-full bg-[#4DD0E1]/10 border border-[#4DD0E1]/30">
+                Packaging & Wholesale Supply
+              </span>
+              <h2
+                className="text-4xl lg:text-5xl font-black text-white mt-4 mb-4"
+                style={{ fontFamily: 'Manrope, sans-serif' }}
+              >
+                Do You Need Empty Bottles?
+              </h2>
+              <p className="text-white/75 text-base lg:text-lg font-medium">
+                We supply food-grade, high-quality empty PET plastic bottles — perfect for packaging your own <span className="text-[#4DD0E1] font-bold">Zobo, Kunu, Juices, Water, or Craft Beverages</span>.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              {[
+                {
+                  size: '33cl',
+                  label: '33cl Empty PET Bottle',
+                  desc: 'Ideal for mini juice bottles, event drinks, sample sizes & single-serve Zobo.',
+                  accent: '#4DD0E1',
+                  image: smallPack,
+                },
+                {
+                  size: '50cl',
+                  label: '50cl Empty PET Bottle',
+                  desc: 'Standard most popular size for Kunu, Zobo, cold teas, and commercial drinks.',
+                  accent: '#26C6DA',
+                  image: smallBottle,
+                },
+                {
+                  size: '75cl',
+                  label: '75cl Empty PET Bottle',
+                  desc: 'Premium large size for family portions, table water, and large volume beverages.',
+                  accent: '#80DEEA',
+                  image: bigBottle,
+                },
+              ].map((item, i) => (
+                <motion.div
+                  key={item.size}
+                  {...fadeUp(i * 0.15)}
+                  className="rounded-3xl p-6 bg-[#0a1929] border border-white/12 hover:border-[#4DD0E1]/50 backdrop-blur-md flex flex-col justify-between transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl hover:shadow-[#4DD0E1]/10 group"
+                >
+                  <div>
+                    <div className="h-52 bg-white/90 rounded-2xl p-4 flex items-center justify-center mb-6 shadow-inner">
+                      <img
+                        src={item.image}
+                        alt={item.label}
+                        className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                      />
+                    </div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-white font-extrabold text-2xl">{item.size}</span>
+                      <span className="text-[#4DD0E1] text-xs font-bold px-3 py-1 rounded-full bg-[#4DD0E1]/15 border border-[#4DD0E1]/30 uppercase tracking-wider">
+                        In Stock
+                      </span>
+                    </div>
+                    <h3 className="text-white font-bold text-lg mb-2">{item.label}</h3>
+                    <p className="text-white/60 text-sm leading-relaxed mb-6">{item.desc}</p>
+                  </div>
+
+                  <a
+                    href={`https://wa.me/+2347068611884?text=Hi%20SUPER%20TOPP%2C%20I%20want%20to%20order%20empty%20bottles%20in%20size%20${item.size}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-3.5 px-6 rounded-xl bg-[#4DD0E1] text-[#0B1F35] font-extrabold text-sm flex items-center justify-center gap-2 hover:bg-white transition-all shadow-lg shadow-[#4DD0E1]/20"
+                  >
+                    <MessageCircle className="w-4 h-4 fill-[#0B1F35]" />
+                    Order {item.size} Empty Bottles
+                  </a>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Bottom Bulk CTA Banner */}
+            <motion.div
+              {...fadeUp(0.3)}
+              className="rounded-2xl p-8 bg-[#0a1929] border border-white/20 backdrop-blur-md flex flex-col md:flex-row items-center justify-between gap-6"
+            >
+              <div className="text-center md:text-left">
+                <h3 className="text-white font-extrabold text-xl lg:text-2xl mb-1">
+                  Need Bulk or Custom Quantities of Empty Bottles?
+                </h3>
+                <p className="text-white/70 text-sm">
+                  We provide flexible wholesale pricing for commercial beverage producers, event planners, and local businesses.
+                </p>
+              </div>
+              <a
+                href="https://wa.me/+2347068611884?text=Hi%20SUPER%20TOPP%2C%20I'd%20like%20to%20inquire%20about%20bulk%20empty%20bottles%20supply!"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-4 rounded-xl bg-[#25D366] text-white font-black text-sm flex items-center gap-2 hover:bg-[#22bf5b] transition-all shadow-xl hover:scale-105 flex-shrink-0"
+              >
+                <MessageCircle className="w-5 h-5 fill-current" />
+                Order on WhatsApp
+              </a>
             </motion.div>
           </div>
         </section>

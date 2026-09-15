@@ -602,7 +602,7 @@ export function Home() {
         </section>
 
         {/* ═══ TESTIMONIALS ═══ */}
-        <section className="bg-[#0B1F35] py-24 lg:py-32 overflow-hidden">
+        {/* <section className="bg-[#0B1F35] py-24 lg:py-32 overflow-hidden">
           <div className="max-w-7xl mx-auto px-6">
             <motion.div {...fadeUp()} className="text-center mb-10">
               <span className="text-[#4DD0E1] text-sm font-bold tracking-[0.25em] uppercase">Testimonials</span>
@@ -649,7 +649,7 @@ export function Home() {
               ))}
             </Swiper>
           </div>
-        </section>
+        </section> */}
 
         {/* ═══ CTA ═══ */}
         <section

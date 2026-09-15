@@ -11,47 +11,69 @@ function mediaStreamPlugin() {
       server.middlewares.use((req: any, res: any, next: any) => {
         if (!req.url) return next()
 
-        const cleanUrl = decodeURIComponent(req.url.split('?')[0])
-        const ext = path.extname(cleanUrl).toLowerCase()
+        try {
+          const cleanUrl = decodeURIComponent(req.url.split('?')[0])
+          const ext = path.extname(cleanUrl).toLowerCase()
 
-        if (['.mov', '.mp4', '.webm', '.ogg'].includes(ext)) {
-          let filePath = path.join(process.cwd(), 'public', cleanUrl)
-          if (!fs.existsSync(filePath)) {
-            filePath = path.join(process.cwd(), cleanUrl)
-          }
+          if (['.mov', '.mp4', '.webm', '.ogg'].includes(ext)) {
+            let filePath = path.join(process.cwd(), 'public', cleanUrl)
+            if (!fs.existsSync(filePath)) {
+              filePath = path.join(process.cwd(), cleanUrl)
+            }
 
-          if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
-            const stat = fs.statSync(filePath)
-            const fileSize = stat.size
-            const range = req.headers.range
-            const contentType = ext === '.mp4' ? 'video/mp4' : 'video/quicktime'
+            if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+              const stat = fs.statSync(filePath)
+              const fileSize = stat.size
 
-            if (range) {
-              const parts = range.replace(/bytes=/, '').split('-')
-              const start = parseInt(parts[0], 10)
-              const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1
-              const chunksize = end - start + 1
-              const file = fs.createReadStream(filePath, { start, end })
-              const head = {
-                'Content-Range': `bytes ${start}-${end}/${fileSize}`,
-                'Accept-Ranges': 'bytes',
-                'Content-Length': chunksize,
-                'Content-Type': contentType,
+              if (fileSize === 0) {
+                res.writeHead(200, { 'Content-Length': 0 })
+                res.end()
+                return
               }
-              res.writeHead(206, head)
-              file.pipe(res)
-              return
-            } else {
-              const head = {
-                'Content-Length': fileSize,
-                'Content-Type': contentType,
-                'Accept-Ranges': 'bytes',
+
+              const range = req.headers.range
+              const contentType = ext === '.mp4' ? 'video/mp4' : 'video/quicktime'
+
+              if (range && typeof range === 'string' && range.startsWith('bytes=')) {
+                const parts = range.replace(/^bytes=/, '').split('-')
+                let start = parseInt(parts[0], 10)
+                let end = parseInt(parts[1], 10)
+
+                if (isNaN(start) && !isNaN(end)) {
+                  start = Math.max(0, fileSize - end)
+                  end = fileSize - 1
+                } else if (!isNaN(start) && isNaN(end)) {
+                  end = fileSize - 1
+                }
+
+                if (isNaN(start) || start < 0) start = 0
+                if (isNaN(end) || end >= fileSize) end = fileSize - 1
+                if (start > end) start = 0
+
+                const chunksize = end - start + 1
+                const file = fs.createReadStream(filePath, { start, end })
+
+                res.writeHead(206, {
+                  'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+                  'Accept-Ranges': 'bytes',
+                  'Content-Length': chunksize,
+                  'Content-Type': contentType,
+                })
+                file.pipe(res)
+                return
+              } else {
+                res.writeHead(200, {
+                  'Content-Length': fileSize,
+                  'Content-Type': contentType,
+                  'Accept-Ranges': 'bytes',
+                })
+                fs.createReadStream(filePath).pipe(res)
+                return
               }
-              res.writeHead(200, head)
-              fs.createReadStream(filePath).pipe(res)
-              return
             }
           }
+        } catch (e) {
+          console.error('Media stream error:', e)
         }
         next()
       })

@@ -19,6 +19,9 @@ import sachete from '../../images/sachete.webp'
 import hydration from '../../images/hydration.webp'
 import idea from '../../images/idea.webp'
 import heroBg from '../../images/hero-bg.png'
+import emptyBottle33cl from '../../images/empty-bottle.png'
+import emptyBottle50cl from '../../images/empty-bottle-50cl.png'
+import emptyBottle75cl from '../../images/empty-bottle-75cl.png'
 import 'swiper/css'
 import 'swiper/css/pagination'
 
@@ -580,7 +583,7 @@ export function Home() {
                 Do You Need Empty Bottles?
               </h2>
               <p className="text-white/75 text-base lg:text-lg font-medium">
-                We supply food-grade, high-quality empty PET plastic bottles — perfect for packaging your own <span className="text-[#4DD0E1] font-bold">Zobo, Kunu, Juices, Water, or Craft Beverages</span>.
+                We supply food-grade, high-quality empty PET plastic bottles, perfect for packaging your own <span className="text-[#4DD0E1] font-bold">Zobo, Kunu, Juices, Water, or Craft Beverages</span>.
               </p>
             </motion.div>
 
@@ -591,21 +594,24 @@ export function Home() {
                   label: '33cl Empty PET Bottle',
                   desc: 'Ideal for mini juice bottles, event drinks, sample sizes & single-serve Zobo.',
                   accent: '#4DD0E1',
-                  image: smallPack,
+                  image: emptyBottle33cl,
+                  scaleClass: 'h-[75%]',
                 },
                 {
                   size: '50cl',
                   label: '50cl Empty PET Bottle',
                   desc: 'Standard most popular size for Kunu, Zobo, cold teas, and commercial drinks.',
                   accent: '#26C6DA',
-                  image: smallBottle,
+                  image: emptyBottle50cl,
+                  scaleClass: 'h-[88%]',
                 },
                 {
                   size: '75cl',
                   label: '75cl Empty PET Bottle',
                   desc: 'Premium large size for family portions, table water, and large volume beverages.',
                   accent: '#80DEEA',
-                  image: bigBottle,
+                  image: emptyBottle75cl,
+                  scaleClass: 'h-[100%]',
                 },
               ].map((item, i) => (
                 <motion.div
@@ -614,11 +620,11 @@ export function Home() {
                   className="rounded-3xl p-6 bg-[#0a1929] border border-white/12 hover:border-[#4DD0E1]/50 backdrop-blur-md flex flex-col justify-between transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl hover:shadow-[#4DD0E1]/10 group"
                 >
                   <div>
-                    <div className="h-52 bg-white/90 rounded-2xl p-4 flex items-center justify-center mb-6 shadow-inner">
+                    <div className="h-56 bg-white rounded-2xl p-4 flex items-end justify-center mb-6 shadow-inner">
                       <img
                         src={item.image}
                         alt={item.label}
-                        className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                        className={`max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300 ${item.scaleClass}`}
                       />
                     </div>
                     <div className="flex items-center justify-between mb-2">

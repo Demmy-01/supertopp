@@ -4,6 +4,7 @@ import { HelmetProvider } from 'react-helmet-async'
 import { motion, AnimatePresence } from 'motion/react'
 import { Navbar } from './components/Navbar'
 import { Footer } from './components/Footer'
+import { FloatingBottleOrder } from './components/FloatingBottleOrder'
 import { Home } from './pages/Home'
 import { About } from './pages/About'
 import { Products } from './pages/Products'
@@ -42,6 +43,7 @@ function Layout() {
         </AnimatedPage>
       </AnimatePresence>
       <Footer />
+      <FloatingBottleOrder />
       <ScrollRestoration />
     </div>
   )

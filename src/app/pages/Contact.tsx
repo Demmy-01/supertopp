@@ -86,7 +86,7 @@ export function Contact() {
 
       <main className="overflow-hidden">
         {/* ═══ HERO ═══ */}
-        <section className="relative min-h-[50vh] flex items-center overflow-hidden bg-[#0B1F35]">
+        <section className="relative min-h-[55vh] flex items-end overflow-hidden bg-[#0B1F35]">
           <div
             className="absolute inset-0"
             style={{
@@ -95,9 +95,9 @@ export function Contact() {
               backgroundPosition: 'center',
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0B1F35]/85 via-[#003C8F]/75 to-[#0a1929]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0B1F35]/85 via-[#003C8F]/70 to-[#0a1929]" />
           <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 20% 60%, #4DD0E1 0%, transparent 50%)' }} />
-          <div className="relative z-10 max-w-7xl mx-auto px-6 pt-36 pb-16">
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-32 pb-20" style={{ paddingTop: 'max(8rem, calc(var(--navbar-h, 80px) + 3rem))' }}>
             <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
               <span className="text-[#4DD0E1] text-sm font-bold tracking-[0.25em] uppercase">Get In Touch</span>
               <h1
@@ -106,7 +106,7 @@ export function Contact() {
               >
                 We'd Love to Hear From You
               </h1>
-              <p className="text-white/65 text-lg max-w-lg">
+              <p className="text-white/70 text-lg max-w-lg font-medium">
                 Whether it's your first order or you're building a distribution empire — we're here, fast, and ready.
               </p>
             </motion.div>
@@ -115,7 +115,7 @@ export function Contact() {
 
         {/* ═══ FORM + INFO ═══ */}
         <section className="bg-[#0a1929] py-20 lg:py-28">
-          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-5 gap-12">
+          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
             {/* Form — wider */}
             <motion.div {...fadeUp()} className="lg:col-span-3">
               <h2
@@ -136,101 +136,106 @@ export function Contact() {
                   <p className="text-white/55">We'll get back to you within 30 minutes during business hours.</p>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                      <label className="text-white/70 text-sm font-medium block mb-2">Full Name *</label>
-                      <input
-                        {...register('name', { required: 'Name is required' })}
-                        placeholder="John Doe"
-                        className="w-full px-4 py-3 rounded-xl bg-white/6 border border-white/12 text-white placeholder-white/30 focus:outline-none focus:border-[#4DD0E1]/60 focus:bg-white/8 transition-all duration-300"
-                      />
-                      {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name.message}</p>}
+                <div className="rounded-2xl bg-white/[0.04] border border-white/10 p-6 lg:p-8">
+                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      <div>
+                        <label className="text-white/70 text-sm font-medium block mb-2">Full Name *</label>
+                        <input
+                          {...register('name', { required: 'Name is required' })}
+                          placeholder="John Doe"
+                          className="w-full px-4 py-3 rounded-xl bg-white/6 border border-white/12 text-white placeholder-white/30 focus:outline-none focus:border-[#4DD0E1]/60 focus:bg-white/8 transition-all duration-300"
+                        />
+                        {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name.message}</p>}
+                      </div>
+                      <div>
+                        <label className="text-white/70 text-sm font-medium block mb-2">Email Address *</label>
+                        <input
+                          {...register('email', {
+                            required: 'Email is required',
+                            pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Invalid email' },
+                          })}
+                          type="email"
+                          placeholder="john@example.com"
+                          className="w-full px-4 py-3 rounded-xl bg-white/6 border border-white/12 text-white placeholder-white/30 focus:outline-none focus:border-[#4DD0E1]/60 focus:bg-white/8 transition-all duration-300"
+                        />
+                        {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email.message}</p>}
+                      </div>
                     </div>
-                    <div>
-                      <label className="text-white/70 text-sm font-medium block mb-2">Email Address *</label>
-                      <input
-                        {...register('email', {
-                          required: 'Email is required',
-                          pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Invalid email' },
-                        })}
-                        type="email"
-                        placeholder="john@example.com"
-                        className="w-full px-4 py-3 rounded-xl bg-white/6 border border-white/12 text-white placeholder-white/30 focus:outline-none focus:border-[#4DD0E1]/60 focus:bg-white/8 transition-all duration-300"
-                      />
-                      {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email.message}</p>}
-                    </div>
-                  </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      <div>
+                        <label className="text-white/70 text-sm font-medium block mb-2">Phone Number</label>
+                        <input
+                          {...register('phone')}
+                          type="tel"
+                          placeholder="+234 706 861 1884"
+                          className="w-full px-4 py-3 rounded-xl bg-white/6 border border-white/12 text-white placeholder-white/30 focus:outline-none focus:border-[#4DD0E1]/60 focus:bg-white/8 transition-all duration-300"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-white/70 text-sm font-medium block mb-2">Inquiry Type</label>
+                        <select
+                          {...register('type', { required: 'Please select a type' })}
+                          className="w-full px-4 py-3 rounded-xl bg-white/6 border border-white/12 text-white focus:outline-none focus:border-[#4DD0E1]/60 transition-all duration-300 appearance-none"
+                          style={{ colorScheme: 'dark' }}
+                        >
+                          <option value="" className="bg-[#0B1F35]">Select type</option>
+                          <option value="order" className="bg-[#0B1F35]">Place an Order</option>
+                          <option value="corporate" className="bg-[#0B1F35]">Corporate Account</option>
+                          <option value="distributor" className="bg-[#0B1F35]">Distributor Inquiry</option>
+                          <option value="dispenser" className="bg-[#0B1F35]">Dispenser Program</option>
+                          <option value="support" className="bg-[#0B1F35]">Customer Support</option>
+                          <option value="other" className="bg-[#0B1F35]">Other</option>
+                        </select>
+                        {errors.type && <p className="text-red-400 text-xs mt-1">{errors.type.message}</p>}
+                      </div>
+                    </div>
+
                     <div>
-                      <label className="text-white/70 text-sm font-medium block mb-2">Phone Number</label>
+                      <label className="text-white/70 text-sm font-medium block mb-2">Subject *</label>
                       <input
-                        {...register('phone')}
-                        type="tel"
-                        placeholder="+254 712 345 678"
+                        {...register('subject', { required: 'Subject is required' })}
+                        placeholder="How can we help you?"
                         className="w-full px-4 py-3 rounded-xl bg-white/6 border border-white/12 text-white placeholder-white/30 focus:outline-none focus:border-[#4DD0E1]/60 focus:bg-white/8 transition-all duration-300"
                       />
+                      {errors.subject && <p className="text-red-400 text-xs mt-1">{errors.subject.message}</p>}
                     </div>
+
                     <div>
-                      <label className="text-white/70 text-sm font-medium block mb-2">Inquiry Type</label>
-                      <select
-                        {...register('type', { required: 'Please select a type' })}
-                        className="w-full px-4 py-3 rounded-xl bg-white/6 border border-white/12 text-white focus:outline-none focus:border-[#4DD0E1]/60 transition-all duration-300 appearance-none"
-                        style={{ colorScheme: 'dark' }}
+                      <label className="text-white/70 text-sm font-medium block mb-2">Message *</label>
+                      <textarea
+                        {...register('message', { required: 'Message is required', minLength: { value: 20, message: 'At least 20 characters' } })}
+                        rows={5}
+                        placeholder="Tell us about your order, question, or inquiry in detail..."
+                        className="w-full px-4 py-3 rounded-xl bg-white/6 border border-white/12 text-white placeholder-white/30 focus:outline-none focus:border-[#4DD0E1]/60 focus:bg-white/8 transition-all duration-300 resize-none"
+                      />
+                      {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message.message}</p>}
+                    </div>
+
+                    {/* Submit — visually separated from fields */}
+                    <div className="pt-3 border-t border-white/8">
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="w-full sm:w-auto flex items-center justify-center gap-3 px-10 py-4 rounded-xl font-bold text-[#0B1F35] text-base disabled:opacity-60 disabled:cursor-not-allowed hover:scale-[1.03] hover:shadow-xl hover:shadow-[#4DD0E1]/25 active:scale-[0.98] transition-all duration-300"
+                        style={{ background: 'linear-gradient(135deg, #4DD0E1 0%, #26C6DA 100%)' }}
                       >
-                        <option value="" className="bg-[#0B1F35]">Select type</option>
-                        <option value="order" className="bg-[#0B1F35]">Place an Order</option>
-                        <option value="corporate" className="bg-[#0B1F35]">Corporate Account</option>
-                        <option value="distributor" className="bg-[#0B1F35]">Distributor Inquiry</option>
-                        <option value="dispenser" className="bg-[#0B1F35]">Dispenser Program</option>
-                        <option value="support" className="bg-[#0B1F35]">Customer Support</option>
-                        <option value="other" className="bg-[#0B1F35]">Other</option>
-                      </select>
-                      {errors.type && <p className="text-red-400 text-xs mt-1">{errors.type.message}</p>}
+                        {isSubmitting ? (
+                          <>
+                            <div className="w-4 h-4 rounded-full border-2 border-[#0B1F35]/30 border-t-[#0B1F35] animate-spin" />
+                            Sending...
+                          </>
+                        ) : (
+                          <>
+                            <Send className="w-4 h-4" />
+                            Send Message
+                          </>
+                        )}
+                      </button>
                     </div>
-                  </div>
-
-                  <div>
-                    <label className="text-white/70 text-sm font-medium block mb-2">Subject *</label>
-                    <input
-                      {...register('subject', { required: 'Subject is required' })}
-                      placeholder="How can we help you?"
-                      className="w-full px-4 py-3 rounded-xl bg-white/6 border border-white/12 text-white placeholder-white/30 focus:outline-none focus:border-[#4DD0E1]/60 focus:bg-white/8 transition-all duration-300"
-                    />
-                    {errors.subject && <p className="text-red-400 text-xs mt-1">{errors.subject.message}</p>}
-                  </div>
-
-                  <div>
-                    <label className="text-white/70 text-sm font-medium block mb-2">Message *</label>
-                    <textarea
-                      {...register('message', { required: 'Message is required', minLength: { value: 20, message: 'At least 20 characters' } })}
-                      rows={5}
-                      placeholder="Tell us about your order, question, or inquiry in detail..."
-                      className="w-full px-4 py-3 rounded-xl bg-white/6 border border-white/12 text-white placeholder-white/30 focus:outline-none focus:border-[#4DD0E1]/60 focus:bg-white/8 transition-all duration-300 resize-none"
-                    />
-                    {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message.message}</p>}
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-[#0B1F35] disabled:opacity-60 disabled:cursor-not-allowed hover:scale-105 transition-all duration-300"
-                    style={{ background: 'linear-gradient(135deg, #4DD0E1, #26C6DA)' }}
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-4 h-4 rounded-full border-2 border-[#0B1F35]/30 border-t-[#0B1F35] animate-spin" />
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-4 h-4" />
-                        Send Message
-                      </>
-                    )}
-                  </button>
-                </form>
+                  </form>
+                </div>
               )}
             </motion.div>
 

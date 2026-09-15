@@ -8,6 +8,9 @@ import bigPack from '../../images/big_pack.webp'
 import bigBottle from '../../images/big_bottle.webp'
 import smallPack from '../../images/small_pack.webp'
 import dispenser from '../../images/dispenser.webp'
+import emptyBottle33cl from '../../images/empty-bottle.png'
+import emptyBottle50cl from '../../images/empty-bottle-50cl.png'
+import emptyBottle75cl from '../../images/empty-bottle-75cl.png'
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 50 },
@@ -78,9 +81,39 @@ const products: Product[] = [
     tag: 'Budget Friendly',
     image: sachete,
   },
+  {
+    id: 'empty_bottle_33cl',
+    size: '33cl Empty',
+    label: '33cl Empty PET Bottle',
+    category: 'Empty Bottles',
+    features: ['Food-grade PET plastic', 'Single-serve Zobo & Juice size', 'High clarity & durable', 'Wholesale available'],
+    bestFor: 'Zobo, Kunu, sample drinks, event packaging',
+    tag: 'Wholesale',
+    image: emptyBottle33cl,
+  },
+  {
+    id: 'empty_bottle_50cl',
+    size: '50cl Empty',
+    label: '50cl Empty PET Bottle',
+    category: 'Empty Bottles',
+    features: ['Standard commercial size', 'Food-grade BPA-Free PET', 'Secure screw cap neck', 'Bulk order pricing'],
+    bestFor: 'Kunu, Zobo, cold teas, commercial drinks',
+    tag: 'Best Seller',
+    image: emptyBottle50cl,
+  },
+  {
+    id: 'empty_bottle_75cl',
+    size: '75cl Empty',
+    label: '75cl Empty PET Bottle',
+    category: 'Empty Bottles',
+    features: ['Large volume PET bottle', 'Strong rigid body', 'Food-grade safety certified', 'Bulk quantity discount'],
+    bestFor: 'Family portion drinks, juices, table water',
+    tag: 'Bulk Size',
+    image: emptyBottle75cl,
+  },
 ]
 
-const categories = ['All', 'Bottles', 'Jar', 'Sachet']
+const categories = ['All', 'Bottles', 'Empty Bottles', 'Jar', 'Sachet']
 
 export function Products() {
   const [activeCategory, setActiveCategory] = useState('All')
@@ -218,7 +251,7 @@ export function Products() {
 
                         <div className="flex gap-2 mt-4">
                           <a
-                            href={`https://wa.me/12345678900?text=Hi%2C%20I'd%20like%20to%20order%20SUPER%20TOPP%20${product.size}%20-%20${product.label}`}
+                            href={`https://wa.me/+2347068611884?text=Hi%2C%20I'd%20like%20to%20order%20SUPER%20TOPP%20${product.size}%20-%20${product.label}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-green-500/15 border border-green-500/30 text-green-400 text-xs font-bold hover:bg-green-500 hover:text-white hover:border-green-500 transition-all duration-300"
@@ -227,7 +260,7 @@ export function Products() {
                             WhatsApp
                           </a>
                           <a
-                            href="tel:+12345678900"
+                            href="tel:+2347068611884"
                             className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#4DD0E1]/10 border border-[#4DD0E1]/30 text-[#4DD0E1] text-xs font-bold hover:bg-[#4DD0E1] hover:text-[#0B1F35] transition-all duration-300"
                           >
                             <ShoppingBag className="w-3.5 h-3.5" />

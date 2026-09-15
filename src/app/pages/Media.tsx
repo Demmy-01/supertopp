@@ -31,7 +31,7 @@ import community7 from '../../images/community-7.jpeg'
 import community8 from '../../images/community-8.jpeg'
 import community9 from '../../images/community-9.jpeg'
 
-const videoDscUrl = '/video-dsc.MOV'
+const videoDscUrl = '/video-dsc.mp4'
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 50 },
@@ -375,14 +375,15 @@ export function Media() {
                 onClick={() => setVideoLightbox({ src: videoDscUrl, title: 'The Process' })}
               >
                 <video
-                  preload="metadata"
+                  autoPlay
                   muted
                   loop
                   playsInline
+                  preload="auto"
                   className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                 >
-                  <source src={videoDscUrl} type="video/quicktime" />
-                  <source src={videoDscUrl} type="video/mp4" />
+                  <source src="/video-dsc.mp4" type="video/mp4" />
+                  <source src="/video-dsc.MOV" type="video/quicktime" />
                 </video>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F35] via-[#0B1F35]/30 to-transparent" />
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
@@ -485,33 +486,33 @@ export function Media() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.92, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="relative max-w-5xl w-full rounded-3xl overflow-hidden bg-[#0B1F35] border border-white/20 shadow-2xl flex flex-col"
+              className="relative max-w-4xl w-full max-h-[85vh] rounded-2xl overflow-hidden bg-[#0B1F35] border border-white/20 shadow-2xl flex flex-col my-auto"
               onClick={e => e.stopPropagation()}
             >
-              <div className="relative w-full bg-black aspect-video flex items-center justify-center">
+              <div className="relative w-full flex-1 min-h-0 bg-black flex items-center justify-center overflow-hidden">
                 <video
                   controls
                   autoPlay
                   playsInline
-                  className="w-full h-full object-contain max-h-[80vh]"
+                  className="w-full h-full max-h-[68vh] object-contain"
                 >
-                  <source src={videoLightbox.src} type="video/quicktime" />
-                  <source src={videoLightbox.src} type="video/mp4" />
+                  <source src={videoLightbox.src === '/video-dsc.MOV' ? '/video-dsc.mp4' : videoLightbox.src} type="video/mp4" />
+                  <source src="/video-dsc.MOV" type="video/quicktime" />
                 </video>
                 <button
                   onClick={() => setVideoLightbox(null)}
-                  className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/60 border border-white/20 flex items-center justify-center hover:bg-[#4DD0E1] hover:text-[#0B1F35] transition-all duration-300 text-white"
+                  className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/60 border border-white/20 flex items-center justify-center hover:bg-[#4DD0E1] hover:text-[#0B1F35] transition-all duration-300 text-white shadow-lg"
                   aria-label="Close video player"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
-              <div className="p-5 bg-[#0B1F35] border-t border-white/10 flex items-center justify-between">
+              <div className="p-4 sm:p-5 bg-[#0B1F35] border-t border-white/10 flex items-center justify-between shrink-0">
                 <div>
                   <span className="bg-[#4DD0E1]/15 text-[#4DD0E1] border border-[#4DD0E1]/30 text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">
                     Featured Video
                   </span>
-                  <h3 className="text-white font-bold text-xl mt-2">{videoLightbox.title}</h3>
+                  <h3 className="text-white font-bold text-lg sm:text-xl mt-1">{videoLightbox.title}</h3>
                 </div>
               </div>
             </motion.div>

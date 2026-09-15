@@ -31,6 +31,8 @@ import community7 from '../../images/community-7.jpeg'
 import community8 from '../../images/community-8.jpeg'
 import community9 from '../../images/community-9.jpeg'
 
+import videoDsc from '../../images/video-dsc.MOV'
+
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 50 },
   whileInView: { opacity: 1, y: 0 },
@@ -222,6 +224,7 @@ const categories = ['All', 'Brand', 'Production', 'Lifestyle', 'Community']
 export function Media() {
   const [filter, setFilter] = useState('All')
   const [lightbox, setLightbox] = useState<GalleryItem | null>(null)
+  const [videoLightbox, setVideoLightbox] = useState<{ src: string; title: string } | null>(null)
 
   const filtered = filter === 'All' ? galleryItems : galleryItems.filter(i => i.category === filter)
 
@@ -361,43 +364,64 @@ export function Media() {
                 Our Story in Motion
               </h2>
               <p className="text-white/60 mt-4 max-w-lg mx-auto font-medium">
-                Brand films and facility tours coming soon. Explore our ongoing updates and documentaries.
+                Watch our production process and featured documentaries.
               </p>
             </motion.div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                { title: 'The Purification Journey', dur: '4:32', img: production1 },
-                { title: 'Water For All — Community Report', dur: '6:15', img: community2 },
-                { title: 'A Day at the Plant', dur: '3:47', img: production4 },
-              ].map((video, i) => (
-                <motion.div
-                  key={video.title}
-                  {...fadeUp(i * 0.1)}
-                  className="group relative rounded-2xl overflow-hidden aspect-video bg-[#0a1929] cursor-pointer border border-white/10 hover:border-[#4DD0E1]/50 transition-all duration-300"
-                >
-                  <img
-                    src={video.img}
-                    alt={video.title}
-                    className="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F35] via-[#0B1F35]/40 to-transparent" />
-                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-                    <div className="w-16 h-16 rounded-full bg-[#4DD0E1]/20 border-2 border-[#4DD0E1] flex items-center justify-center group-hover:scale-110 transition-transform duration-300 backdrop-blur shadow-lg shadow-[#4DD0E1]/20">
-                      <Play className="w-7 h-7 text-[#4DD0E1] fill-[#4DD0E1] ml-1" />
-                    </div>
-                    <div className="text-center px-4">
-                      <div className="text-white font-bold text-base">{video.title}</div>
-                      <div className="text-[#4DD0E1] text-xs font-semibold mt-1">{video.dur} — Coming Soon</div>
-                    </div>
+              {/* Card 1: The Process Video */}
+              <motion.div
+                {...fadeUp(0)}
+                className="group relative rounded-2xl overflow-hidden aspect-video bg-[#0a1929] cursor-pointer border border-[#4DD0E1]/40 hover:border-[#4DD0E1] shadow-xl hover:shadow-2xl hover:shadow-[#4DD0E1]/20 transition-all duration-300"
+                onClick={() => setVideoLightbox({ src: videoDsc, title: 'The Process' })}
+              >
+                <video
+                  src={videoDsc}
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F35] via-[#0B1F35]/30 to-transparent" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                  <div className="w-16 h-16 rounded-full bg-[#4DD0E1] text-[#0B1F35] flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-xl shadow-[#4DD0E1]/30">
+                    <Play className="w-7 h-7 fill-current ml-1" />
                   </div>
-                </motion.div>
-              ))}
+                  <div className="text-center px-4">
+                    <div className="text-white font-bold text-xl drop-shadow">The Process</div>
+                    <div className="text-[#4DD0E1] text-xs font-extrabold mt-1 uppercase tracking-wider">Play Video</div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Card 2: Coming Soon */}
+              <motion.div
+                {...fadeUp(0.1)}
+                className="relative rounded-2xl aspect-video bg-[#0a1929]/70 border border-dashed border-white/20 flex flex-col items-center justify-center p-6 text-center"
+              >
+                <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-3">
+                  <Play className="w-5 h-5 text-white/30 ml-0.5" />
+                </div>
+                <span className="text-white/80 font-bold text-lg">Coming Soon</span>
+                <span className="text-white/40 text-xs font-medium mt-1">Next Documentary</span>
+              </motion.div>
+
+              {/* Card 3: Coming Soon */}
+              <motion.div
+                {...fadeUp(0.2)}
+                className="relative rounded-2xl aspect-video bg-[#0a1929]/70 border border-dashed border-white/20 flex flex-col items-center justify-center p-6 text-center"
+              >
+                <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-3">
+                  <Play className="w-5 h-5 text-white/30 ml-0.5" />
+                </div>
+                <span className="text-white/80 font-bold text-lg">Coming Soon</span>
+                <span className="text-white/40 text-xs font-medium mt-1">Next Documentary</span>
+              </motion.div>
             </div>
           </div>
         </section>
       </main>
 
-      {/* ═══ LIGHTBOX ═══ */}
+      {/* ═══ IMAGE LIGHTBOX ═══ */}
       <AnimatePresence>
         {lightbox && (
           <motion.div
@@ -442,7 +466,54 @@ export function Media() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* ═══ VIDEO LIGHTBOX ═══ */}
+      <AnimatePresence>
+        {videoLightbox && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-lg p-4 sm:p-6"
+            onClick={() => setVideoLightbox(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.92, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.92, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="relative max-w-5xl w-full rounded-3xl overflow-hidden bg-[#0B1F35] border border-white/20 shadow-2xl flex flex-col"
+              onClick={e => e.stopPropagation()}
+            >
+              <div className="relative w-full bg-black aspect-video flex items-center justify-center">
+                <video
+                  src={videoLightbox.src}
+                  controls
+                  autoPlay
+                  className="w-full h-full object-contain max-h-[80vh]"
+                />
+                <button
+                  onClick={() => setVideoLightbox(null)}
+                  className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/60 border border-white/20 flex items-center justify-center hover:bg-[#4DD0E1] hover:text-[#0B1F35] transition-all duration-300 text-white"
+                  aria-label="Close video player"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <div className="p-5 bg-[#0B1F35] border-t border-white/10 flex items-center justify-between">
+                <div>
+                  <span className="bg-[#4DD0E1]/15 text-[#4DD0E1] border border-[#4DD0E1]/30 text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">
+                    Featured Video
+                  </span>
+                  <h3 className="text-white font-bold text-xl mt-2">{videoLightbox.title}</h3>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
 }
+
 

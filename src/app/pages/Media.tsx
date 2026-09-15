@@ -31,7 +31,7 @@ import community7 from '../../images/community-7.jpeg'
 import community8 from '../../images/community-8.jpeg'
 import community9 from '../../images/community-9.jpeg'
 
-import videoDsc from '../../images/video-dsc.MOV'
+const videoDscUrl = '/video-dsc.MOV'
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 50 },
@@ -372,15 +372,18 @@ export function Media() {
               <motion.div
                 {...fadeUp(0)}
                 className="group relative rounded-2xl overflow-hidden aspect-video bg-[#0a1929] cursor-pointer border border-[#4DD0E1]/40 hover:border-[#4DD0E1] shadow-xl hover:shadow-2xl hover:shadow-[#4DD0E1]/20 transition-all duration-300"
-                onClick={() => setVideoLightbox({ src: videoDsc, title: 'The Process' })}
+                onClick={() => setVideoLightbox({ src: videoDscUrl, title: 'The Process' })}
               >
                 <video
-                  src={videoDsc}
+                  preload="metadata"
                   muted
                   loop
                   playsInline
                   className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
-                />
+                >
+                  <source src={videoDscUrl} type="video/quicktime" />
+                  <source src={videoDscUrl} type="video/mp4" />
+                </video>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F35] via-[#0B1F35]/30 to-transparent" />
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
                   <div className="w-16 h-16 rounded-full bg-[#4DD0E1] text-[#0B1F35] flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-xl shadow-[#4DD0E1]/30">
@@ -487,11 +490,14 @@ export function Media() {
             >
               <div className="relative w-full bg-black aspect-video flex items-center justify-center">
                 <video
-                  src={videoLightbox.src}
                   controls
                   autoPlay
+                  playsInline
                   className="w-full h-full object-contain max-h-[80vh]"
-                />
+                >
+                  <source src={videoLightbox.src} type="video/quicktime" />
+                  <source src={videoLightbox.src} type="video/mp4" />
+                </video>
                 <button
                   onClick={() => setVideoLightbox(null)}
                   className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/60 border border-white/20 flex items-center justify-center hover:bg-[#4DD0E1] hover:text-[#0B1F35] transition-all duration-300 text-white"

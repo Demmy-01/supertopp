@@ -12,8 +12,8 @@ import {
 import { WaterCanvas } from '../components/WaterCanvas'
 import waterSplashIi from '../../images/water_splash_ii.webp'
 import bigBottle from '../../images/big_bottle.webp'
-import smallBottle from '../../images/small_bottle.webp'
-import smallPack from '../../images/small_pack.webp'
+import smallBottle from '../../images/small_bottle.jpeg'
+import bottle33cl from '../../images/33cl-bottle-water.webp'
 import dispenser from '../../images/dispenser.webp'
 import sachete from '../../images/sachete.webp'
 import hydration from '../../images/hydration.webp'
@@ -157,7 +157,7 @@ const testimonials = [
 const products = [
   { size: '75cl', label: '75cl Bottle', accent: '#4DD0E1', image: bigBottle },
   { size: '50cl', label: '50cl Bottle', accent: '#26C6DA', image: smallBottle },
-  { size: '33cl', label: '33cl Bottle', accent: '#00BCD4', image: smallPack },
+  { size: '33cl', label: '33cl Bottle', accent: '#00BCD4', image: bottle33cl },
   { size: '19 Liters', label: '19 Liters Jar', accent: '#1565C0', image: dispenser },
   { size: '50cl', label: '50cl Sachet', accent: '#4DD0E1', image: sachete },
 ]
@@ -595,7 +595,7 @@ export function Home() {
                   desc: 'Ideal for mini juice bottles, event drinks, sample sizes & single-serve Zobo.',
                   accent: '#4DD0E1',
                   image: emptyBottle33cl,
-                  scaleClass: 'h-[75%]',
+                  scaleClass: 'h-[65%]',
                 },
                 {
                   size: '50cl',
@@ -603,7 +603,7 @@ export function Home() {
                   desc: 'Standard most popular size for Kunu, Zobo, cold teas, and commercial drinks.',
                   accent: '#26C6DA',
                   image: emptyBottle50cl,
-                  scaleClass: 'h-[88%]',
+                  scaleClass: 'h-[82%]',
                 },
                 {
                   size: '75cl',

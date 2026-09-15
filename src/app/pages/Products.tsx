@@ -3,10 +3,10 @@ import { motion, AnimatePresence } from 'motion/react'
 import { Helmet } from 'react-helmet-async'
 import { MessageCircle, ShoppingBag, CheckCircle2, Droplets, Shield, Award, Phone } from 'lucide-react'
 import sachete from '../../images/sachete.webp'
-import smallBottle from '../../images/small_bottle.webp'
+import smallBottle from '../../images/small_bottle.jpeg'
 import bigPack from '../../images/big_pack.webp'
 import bigBottle from '../../images/big_bottle.webp'
-import smallPack from '../../images/small_pack.webp'
+import bottle33cl from '../../images/33cl-bottle-water.webp'
 import dispenser from '../../images/dispenser.webp'
 import emptyBottle33cl from '../../images/empty-bottle.png'
 import emptyBottle50cl from '../../images/empty-bottle-50cl.png'
@@ -28,6 +28,7 @@ interface Product {
   bestFor: string
   tag?: string
   image: string
+  imageClass?: string
 }
 
 const products: Product[] = [
@@ -40,6 +41,7 @@ const products: Product[] = [
     bestFor: 'Workouts, meals, daily hydration',
     tag: 'Popular',
     image: bigBottle,
+    imageClass: 'h-[100%]',
   },
   {
     id: 'bottle_50cl',
@@ -50,6 +52,7 @@ const products: Product[] = [
     bestFor: 'On-the-go, travel, meetings',
     tag: 'Handy',
     image: smallBottle,
+    imageClass: 'h-[82%]',
   },
   {
     id: 'bottle_33cl',
@@ -59,7 +62,8 @@ const products: Product[] = [
     features: ['Compact & lightweight', 'Child-friendly size', 'BPA-Free PET', 'Purity in every drop'],
     bestFor: 'Kids, events, parties',
     tag: 'Mini',
-    image: smallPack,
+    image: bottle33cl,
+    imageClass: 'h-[65%]',
   },
   {
     id: 'jar_19l',
@@ -70,6 +74,7 @@ const products: Product[] = [
     bestFor: 'Homes, offices, schools & corporate',
     tag: 'Best Value',
     image: dispenser,
+    imageClass: 'h-[100%]',
   },
   {
     id: 'sachet_50cl',
@@ -80,6 +85,7 @@ const products: Product[] = [
     bestFor: 'Everyday affordable hydration, events',
     tag: 'Budget Friendly',
     image: sachete,
+    imageClass: 'h-[85%]',
   },
   {
     id: 'empty_bottle_33cl',
@@ -90,6 +96,7 @@ const products: Product[] = [
     bestFor: 'Zobo, Kunu, sample drinks, event packaging',
     tag: 'Wholesale',
     image: emptyBottle33cl,
+    imageClass: 'h-[65%]',
   },
   {
     id: 'empty_bottle_50cl',
@@ -100,6 +107,7 @@ const products: Product[] = [
     bestFor: 'Kunu, Zobo, cold teas, commercial drinks',
     tag: 'Best Seller',
     image: emptyBottle50cl,
+    imageClass: 'h-[82%]',
   },
   {
     id: 'empty_bottle_75cl',
@@ -110,6 +118,7 @@ const products: Product[] = [
     bestFor: 'Family portion drinks, juices, table water',
     tag: 'Bulk Size',
     image: emptyBottle75cl,
+    imageClass: 'h-[100%]',
   },
 ]
 
@@ -218,11 +227,11 @@ export function Products() {
                       <div
                         className="relative flex items-end justify-center pt-8 pb-4 px-8"
                       >
-                        <div className="h-48 w-full flex items-center justify-center rounded-2xl bg-white p-4">
+                        <div className="h-48 w-full flex items-end justify-center rounded-2xl bg-white p-4">
                           <img
                             src={product.image}
                             alt={product.label}
-                            className="max-h-full max-w-full object-contain"
+                            className={`max-h-full max-w-full object-contain ${product.imageClass || 'h-full'}`}
                           />
                         </div>
                       </div>

@@ -1,8 +1,12 @@
-import { motion } from 'motion/react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'motion/react'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import ceo from '../../images/ceo.webp'
-import { Award, Leaf, Users, ShieldCheck, Heart, Droplets, ArrowRight, CheckCircle2, Sparkles, UserCheck } from 'lucide-react'
+import gm from '../../images/gm.webp'
+import pm from '../../images/pm.webp'
+import cfo from '../../images/cfo.jpeg'
+import { Award, Leaf, Users, ShieldCheck, Heart, Droplets, ArrowRight, CheckCircle2, Sparkles, UserCheck, X, ZoomIn } from 'lucide-react'
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 50 },
@@ -11,26 +15,37 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.75, delay, ease: [0.25, 0.46, 0.45, 0.94] as const },
 })
 
-const teamMembers = [
+interface TeamMember {
+  name: string
+  role: string
+  desc: string
+  image?: string
+}
+
+const teamMembers: TeamMember[] = [
   {
     name: 'Oludayomi Babatunde Johnson',
     role: 'Managing Director (MD)',
     desc: 'Visionary leader behind SuperTopp, driven by a personal commitment to safe and pure drinking water for every home.',
+    image: ceo,
   },
   {
     name: 'Oludayomi Fayoke Comfort',
     role: 'General Manager (GM)',
     desc: 'Oversees operational excellence, quality management, and organizational strategy to maintain gold-standard service.',
+    image: gm,
   },
   {
     name: 'Oladehinde Oluwafemi Emmanuel',
     role: 'Production Manager',
     desc: 'Manages multi-stage purification protocols, factory operations, and strict quality control compliance.',
+    image: pm,
   },
   {
     name: 'Effa, Imaobong Effiong',
     role: 'Chief Financial Officer (CFO)',
     desc: 'Drives financial stewardship, strategic investment, and sustainable growth for the brand.',
+    image: cfo,
   },
 ]
 
@@ -42,6 +57,13 @@ const principles = [
 ]
 
 export function About() {
+  const [lightboxImage, setLightboxImage] = useState<{
+    src: string
+    name: string
+    role: string
+    desc: string
+  } | null>(null)
+
   return (
     <>
       <Helmet>
@@ -89,13 +111,26 @@ export function About() {
             
             {/* Story image & founder card */}
             <motion.div {...fadeUp(0)} className="lg:col-span-5 relative">
-              <div className="rounded-3xl overflow-hidden aspect-[4/5] bg-[#1565C0] shadow-2xl relative">
+              <div
+                className="rounded-3xl overflow-hidden aspect-[4/5] bg-[#1565C0] shadow-2xl relative cursor-pointer group"
+                onClick={() =>
+                  setLightboxImage({
+                    src: ceo,
+                    name: 'Oludayomi Babatunde Johnson',
+                    role: 'Managing Director (MD)',
+                    desc: 'Visionary leader behind SuperTopp, driven by a personal commitment to safe and pure drinking water for every home.',
+                  })
+                }
+              >
                 <img
                   src={ceo}
                   alt="Oludayomi Babatunde Johnson - Director of SuperTopp"
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F35] via-transparent to-transparent opacity-80" />
+                <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-110">
+                  <ZoomIn className="w-5 h-5 text-[#4DD0E1]" />
+                </div>
                 <div className="absolute bottom-6 left-6 right-6 text-white">
                   <div className="text-[#4DD0E1] text-xs font-bold tracking-widest uppercase mb-1">Director / MD</div>
                   <div className="text-xl font-black" style={{ fontFamily: 'Manrope, sans-serif' }}>
@@ -309,12 +344,36 @@ export function About() {
                 <motion.div
                   key={member.name}
                   {...fadeUp(i * 0.1)}
-                  className="bg-white/5 p-7 rounded-2xl border border-white/10 hover:border-[#4DD0E1]/40 hover:bg-white/10 transition-all duration-300 flex flex-col justify-between"
+                  className={`bg-white/5 p-7 rounded-2xl border border-white/10 hover:border-[#4DD0E1]/40 hover:bg-white/10 transition-all duration-300 flex flex-col justify-between group ${
+                    member.image ? 'cursor-pointer' : ''
+                  }`}
+                  onClick={() =>
+                    member.image &&
+                    setLightboxImage({
+                      src: member.image,
+                      name: member.name,
+                      role: member.role,
+                      desc: member.desc,
+                    })
+                  }
                 >
                   <div>
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#4DD0E1]/20 to-[#1565C0]/30 border border-[#4DD0E1]/30 flex items-center justify-center mb-5">
-                      <UserCheck className="w-6 h-6 text-[#4DD0E1]" />
-                    </div>
+                    {member.image ? (
+                      <div className="relative w-20 h-20 rounded-2xl overflow-hidden border-2 border-[#4DD0E1]/40 mb-5 shadow-lg shadow-black/40 group-hover:border-[#4DD0E1] group-hover:scale-105 transition-all duration-300">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="w-full h-full object-cover object-top"
+                        />
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                          <ZoomIn className="w-5 h-5 text-[#4DD0E1] drop-shadow" />
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#4DD0E1]/20 to-[#1565C0]/30 border border-[#4DD0E1]/30 flex items-center justify-center mb-5">
+                        <UserCheck className="w-7 h-7 text-[#4DD0E1]" />
+                      </div>
+                    )}
                     <div className="text-[#4DD0E1] text-xs font-bold tracking-widest uppercase mb-1">
                       {member.role}
                     </div>
@@ -365,6 +424,54 @@ export function About() {
           </div>
         </section>
       </main>
+
+      {/* ═══ LEADERSHIP IMAGE LIGHTBOX ═══ */}
+      <AnimatePresence>
+        {lightboxImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/92 backdrop-blur-lg p-4 sm:p-6"
+            onClick={() => setLightboxImage(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.92, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.92, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="relative max-w-3xl w-full rounded-3xl overflow-hidden bg-[#0B1F35] border border-white/20 shadow-2xl flex flex-col my-auto"
+              onClick={e => e.stopPropagation()}
+            >
+              <div className="relative flex-1 bg-black/60 flex items-center justify-center overflow-hidden p-3 min-h-[40vh] max-h-[70vh]">
+                <img
+                  src={lightboxImage.src}
+                  alt={lightboxImage.name}
+                  className="w-full h-full max-h-[65vh] object-contain rounded-2xl"
+                />
+                <button
+                  onClick={() => setLightboxImage(null)}
+                  className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/60 border border-white/20 flex items-center justify-center hover:bg-[#4DD0E1] hover:text-[#0B1F35] transition-all duration-300 text-white shadow-xl"
+                  aria-label="Close modal"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <div className="p-6 bg-[#0B1F35] border-t border-white/10 flex flex-col shrink-0">
+                <span className="text-[#4DD0E1] text-xs font-black tracking-widest uppercase">
+                  {lightboxImage.role}
+                </span>
+                <h3 className="text-white font-black text-xl lg:text-2xl mt-1" style={{ fontFamily: 'Manrope, sans-serif' }}>
+                  {lightboxImage.name}
+                </h3>
+                {lightboxImage.desc && (
+                  <p className="text-white/70 text-sm mt-2 leading-relaxed">{lightboxImage.desc}</p>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
 }
